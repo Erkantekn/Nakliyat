@@ -2,4 +2,4 @@
  
 Nakliyat temalı yapılmış Asp.net MVC web sitesi.
 
-# Admin panelinden statik .cshtml dosyaları oluşturulabilinir.
+Admin panelinden statik .cshtml dosyaları oluşturulabilinir.
