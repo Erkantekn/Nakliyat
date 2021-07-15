@@ -1,0 +1,74 @@
+﻿@model Nakliyat.ViewModels.IletisimViewModel
+@{
+    ViewBag.Title = "İletişim";
+}
+
+
+    <div class="contact jarallax">
+        <div class="container">
+            <div class="w3-headings-all">
+                <h3>İletişim</h3>
+
+            </div>
+            <div class="contact-grids">
+                <div class="col-md-5 address">
+                    <h4>@Model.pageIletisimV.solBaslik1</h4>
+                    <p class="cnt-p">@Model.pageIletisimV.solİcerik1</p>
+                    <div class="agileits-social1 top_content">
+                        <ul>
+                            @if (Model.sirketBilgileriV.facebook != null)
+                            {
+                                <li><a href="@Model.sirketBilgileriV.facebook"><i class="fa fa-facebook"></i></a></li>
+                            }
+                            @if (Model.sirketBilgileriV.twitter != null)
+                            {
+                                <li><a href="@Model.sirketBilgileriV.twitter"><i class="fa fa-twitter"></i></a></li>
+                            }
+                            @if (Model.sirketBilgileriV.linkedin != null)
+                            {
+                                <li><a href="@Model.sirketBilgileriV.linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="agileits-social-address">
+                        <p>@Model.sirketBilgileriV.adres</p>
+                        <p>Telefon : @Model.sirketBilgileriV.telefon1</p>
+                        @if (Model.sirketBilgileriV.telefon2 != null)
+                        {
+                            <p>Telefon : @Model.sirketBilgileriV.telefon2</p>
+                        }
+                       
+                        <p>Email : <a href="mailto:@Model.sirketBilgileriV.mail">@Model.sirketBilgileriV.mail</a></p>
+                    </div>
+
+                </div>
+                <div class="col-md-7 contact-form">
+                    <form action="/Home/IletisimFormu" method="post">
+                        <input type="text" name="AdSoyad" placeholder="Ad Soyad" required="">
+                        <input class="email" type="email" name="Mail" placeholder="Email" required="">
+                        <textarea placeholder="Mesajınız" name="Mesaj" required=""></textarea>
+                        <input type="submit" value="Gönder">
+
+
+
+                    </form>
+                    @if (ViewBag.basariliMi == 1)
+                    {<br />
+                        <div class="alert alert-success" role="alert">
+                            <strong>Tebrikler!</strong> Mesajınız Başarıyla Gönderildi.
+                        </div>
+                    }
+                    else if (ViewBag.basariliMi == 0)
+                    {<br />
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Hata!</strong> Mesajınız Gönderilirken Bir Hata Oluştu.
+                        </div>
+                    }
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="map">
+        <iframe src="@Model.pageIletisimV.haritaLinki"></iframe>
+    </div>

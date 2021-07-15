@@ -1,0 +1,262 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>@ViewBag.Title - @Model.sirketBilgileriV.isim</title>
+    <!-- custom-theme -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="@if (ViewBag.Keywords != null && ViewBag.Keywords != "" && ViewBag.Keywords != " ") { @ViewBag.Keywords } else { @Model.sirketBilgileriV.siteKeywordleri} " />
+    <meta name="description" content="@if (ViewBag.Aciklama != null && ViewBag.Aciklama != "" && ViewBag.Aciklama != " ") { @ViewBag.Aciklama } else { @Model.sirketBilgileriV.siteAciklamasi}" />
+
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } 
+    </script>
+
+    <!-- //custom-theme -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Content/mainStyles.css" />
+
+
+
+    <!-- //gallery -->
+    <!-- font-awesome-icons -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- js -->
+    <script type="text/javascript" src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+
+        function KategoriRefresh() {
+            var stateId = $('#kategori').val();
+            window.location.href = "/Admin/AdminHome/Galeri?kategoriId=" + stateId;
+        }
+
+
+
+    </script>
+
+    @if (Request.QueryString["yanlisGiris"] != null)
+    {
+        if (Request.QueryString["yanlisGiris"].ToString() == "1")
+        {
+            <script type="text/javascript">
+                $(window).on('load', function () {
+                    $('#modalHataliGiris').modal('show');
+                });
+            </script>
+        }
+    }
+    <!-- for bootstrap working -->
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- //for bootstrap working -->
+    @RenderSection("header", false)
+</head>
+<body>
+
+
+
+    <!-- banner -->
+    <div class="header">
+
+        <div class="w3layouts_header_right">
+            <div class="detail-w3l">
+                <ul>
+                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> @Model.sirketBilgileriV.telefon1</li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="w3layouts_header_left">
+            <ul>
+                <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-user" aria-hidden="true"></i>Giriş Yap</a></li>
+
+            </ul>
+
+        </div>
+        <div class="agileits-social top_content">
+            <ul>
+                @if (Model.sirketBilgileriV.facebook != null)
+                {
+                    <li><a href="@Model.sirketBilgileriV.facebook"><i class="fa fa-facebook"></i></a></li>
+                }
+                @if (Model.sirketBilgileriV.twitter != null)
+                {
+                    <li><a href="@Model.sirketBilgileriV.twitter"><i class="fa fa-twitter"></i></a></li>
+                }
+                @if (Model.sirketBilgileriV.linkedin != null)
+                {
+                    <li><a href="@Model.sirketBilgileriV.linkedin"><i class="fa fa-linkedin"></i></a></li>
+                }
+
+            </ul>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+
+    <div class="banner">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header navbar-left">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1><a class="navbar-brand" href="index.html"><span><i class="fa fa-truck" aria-hidden="true"></i></span>@Model.sirketBilgileriV.isim</a></h1>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"> <a href="/Home/Index"> <span data-hover="Anasayfa"> Anasayfa</span> </a> </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Hakkimizda" ? "active" : "")"> <a href="/Home/Hakkimizda"> <span data-hover="Hakkımızda"> Hakkımızda</span> </a> </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HizmetBolgeleri" ? "active" : "")"> <a href="/Home/HizmetBolgeleri"> <span data-hover="Hizmet Bölgelerimiz"> Hizmet Bölgelerimiz</span> </a> </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Depolama" ? "active" : "")"> <a href="/Home/Depolama"> <span data-hover="Depolama"> Depolama</span> </a> </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Iletisim" ? "active" : "")"> <a href="/Home/Iletisim"> <span data-hover="İletişim"> İletişim</span> </a> </li>
+
+                    </ul>
+                </nav>
+
+            </div>
+
+        </nav>
+    </div>
+    @if (ViewContext.RouteData.Values["Action"].ToString() != "Index")
+    {
+        <div class="banner-multi">
+
+        </div>
+        <div class="about-breadcrumb">
+            <div class="container">
+                <ul>
+                    <li><a href="/Home/Index">Anasayfa</a><i>|</i></li>
+                    <li>@ViewBag.Title</li>
+                </ul>
+            </div>
+        </div>
+    }
+
+
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="signin-form profile">
+                        <h3 class="agileinfo_sign">Giriş Yap</h3>
+                        <div class="login-form">
+                            <form action="/Home/Login" method="post">
+                                <input type="text" name="kullaniciAdi" placeholder="Kullanıcı Adı" required="">
+                                <input type="password" name="sifre" placeholder="Şifre" required="">
+                                <input type="hidden" name="action" hidden="hidden" value="@ViewContext.RouteData.Values["Action"].ToString()">
+                                <div class="tp">
+                                    <input type="submit" value="Giriş">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="login-social-grids">
+                            <ul>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalHataliGiris" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="signin-form profile">
+                        <h3 class="agileinfo_sign">Girilen bilgilere ait kullanıcı bulunamamıştır.</h3>
+                      
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- //banner -->
+    @RenderBody()
+
+    <div class="w3-footer-contact" style="border-top:5px dashed">
+        <div class="container">
+            <div class="col-md-6 w3-footer-contact-left">
+                <h3>@Model.sirketBilgileriV.isim</h3>
+                <p>Profesyonel ekibimiz, müşteri memnuniyet garantimiz, yılların verdiği tecrübe ve kaliteli hizmet verme aşkımız ile her zaman sizin yanınızdayız.</p>
+            </div>
+
+            <div class="col-md-6 w3-footer-contact-right">
+                <div class="col-md-2 w3-footer-contact-icon1">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-10 w3-footer-contact-info">
+                    <p>Adres:</p>
+                    <h4>@Model.sirketBilgileriV.adres</h4>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-2 w3-footer-contact-icon1">
+                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-10 w3-footer-contact-info">
+                    <p>Telefon:</p>
+                    <h4>@Model.sirketBilgileriV.telefon1</h4>
+                    @if (Model.sirketBilgileriV.telefon2 != null)
+                    {<h4>@Model.sirketBilgileriV.telefon2</h4>}
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-2 w3-footer-contact-icon1">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-10 w3-footer-contact-info">
+                    <p>Email:</p>
+                    <h4><a href="mailto:@Model.sirketBilgileriV.mail"> @Model.sirketBilgileriV.mail</a></h4>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <!-- partners -->
+
+        </div>
+        <!-- //partners -->
+
+    </div>
+    <div class="footer-final">
+        <div class="copyw3-agile">
+            <div class="container">
+                <p>&copy; 2020 All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a> | Powered By Erkan Tekin</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

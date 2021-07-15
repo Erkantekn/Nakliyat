@@ -1,0 +1,156 @@
+﻿@using Nakliyat.Models
+@{
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewBag.Title - Admin</title>
+
+    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+    <script src="~/Scripts/font-awasome-all.min.js" crossorigin="anonymous"></script>
+    <style crossorigin="anonymous">
+        @RenderSection("style",false)
+    </style>
+    <script src="~/Scripts/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    @*<script src="~/Areas/Admin/Content/assets/demo/chart-area-demo.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Admin/Content/assets/demo/chart-bar-demo.js" crossorigin="anonymous"></script>*@
+    <script src="~/Areas/Admin/Content/assets/demo/datatables-demo.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <link href="~/Areas/Admin/Content/css/styles.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="~/Areas/Admin/Content/js/scripts.js" crossorigin="anonymous"></script>
+
+    <script>
+        @RenderSection("scripts",false)
+
+
+    </script>
+    @RenderSection("head", false)
+
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Admin Paneli</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#" onclick="toggle()"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="color:white;font-weight:bold;">
+            <div class="input-group">
+                <i> @HttpContext.Current.User.Identity.Name</i>
+
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Hesap Bilgileri</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/Admin/AdminHome/Logout">Çıkış Yap</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Mesajlar</div>
+                        <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")" href="/Admin/AdminHome/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Mesajlar
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Arayüz</div>
+
+                        <a class="nav-link collapsed @(ViewContext.RouteData.Values["Controller"].ToString() == "DinamikSayfalar" ? "active" : "") @(ViewContext.RouteData.Values["Controller"].ToString() == "StatikSayfalar" ? "active" : "")" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Sayfalar
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Statik Sayfalar
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="#">Anasayfa</a>
+                                        <a class="nav-link" href="#">Hakkımızda</a>
+                                        <a class="nav-link" href="#">Depolama</a>
+                                        <a class="nav-link" href="#">Hizmet Bölgelerimiz</a>
+                                        <a class="nav-link" href="#">İletişim</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed @(ViewContext.RouteData.Values["Controller"].ToString() == "DinamikSayfalar" ? "active" : "")" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                    Dinamik Sayfalar
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        @foreach (var item in (List<pagesHizmetEkleme>)ViewBag.HizmetBolgeleri)
+                                        {
+                                            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == item.sayfaAdıIngilizceHarfli ? "active" : "")" href="/Admin/DinamikSayfalar/HizmetBolgesiDuzenle?name=@item.sayfaAdıIngilizceHarfli">@item.goruntulenecekAd</a>
+                                        }
+                                        <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "YeniHizmetBolgesiEkle" ? "active" : "")" href="/Admin/DinamikSayfalar/YeniHizmetBolgesiEkle">Yeni Hizmet Bölgesi Ekle..</a>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div>
+                        <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Galeri" ? "active" : "")" href="/Admin/AdminHome/Galeri">
+                            <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                            Galeri - Slider
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Site</div>
+                        <a class="nav-link" href="charts.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Hesaplar - Yetkiler
+                        </a>
+                        <a class="nav-link" href="tables.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Site Bilgileri
+                        </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Giriş Yapan:</div>
+                    @HttpContext.Current.User.Identity.Name
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                @RenderBody()
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Nakliyat 2020</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+ 
+</body>
+</html>

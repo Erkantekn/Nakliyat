@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="nakliyat_v1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="depolama">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EtkenAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GunlukEtkisi" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="iletisimFormu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mesaj" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OkunduMu" Type="Boolean" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="pagesHizmetEkleme">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fotograf1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fotograf2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fotograf3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sayfaAciklamasi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="keywords" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="sayfaAdıIngilizceHarfli" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="goruntulenecekAd" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sirketBilgileri">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="telefon1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telefon2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="linkedin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="siteAciklamasi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="siteKeywordleri" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="serverDakikaTamamlama" Type="Int32" Nullable="false" />
+    <Property Name="URL_Sitemap_icin" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="nakliyatEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="depolama" EntityType="Self.depolama" />
+    <EntitySet Name="iletisimFormu" EntityType="Self.iletisimFormu" />
+    <EntitySet Name="pagesHizmetEkleme" EntityType="Self.pagesHizmetEkleme" />
+    <EntitySet Name="sirketBilgileri" EntityType="Self.sirketBilgileri" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="pageIletisim" EntityType="nakliyat_v1Model.pageIletisim" />
+    <EntitySet Name="pageHakkimizdaa" EntityType="nakliyat_v1Model.pageHakkimizdaa" />
+    <EntitySet Name="defaultHizmetSayfasiBilgileri" EntityType="nakliyat_v1Model.defaultHizmetSayfasiBilgileri" />
+    <EntitySet Name="ResimKategorileri" EntityType="nakliyat_v1Model.ResimKategorileri" />
+    <EntitySet Name="Resimler" EntityType="nakliyat_v1Model.Resimler" />
+    <AssociationSet Name="FK_Resimler_ResimKategorileri" Association="nakliyat_v1Model.FK_Resimler_ResimKategorileri">
+      <End Role="ResimKategorileri" EntitySet="ResimKategorileri" />
+      <End Role="Resimler" EntitySet="Resimler" />
+    </AssociationSet>
+    <EntitySet Name="sitemapUrl" EntityType="nakliyat_v1Model.sitemapUrl" />
+  </EntityContainer>
+  <EntityType Name="pageIletisim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="solBaslik1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="solİcerik1" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="haritaLinki" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="pageHakkimizdaa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="baslik1" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="icerik1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="baslik2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="icerik2" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="icerik2ArkaplanResmi" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="defaultHizmetSayfasiBilgileri">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="baslik" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="icerik" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resim" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="keywords" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="siteAciklamasi" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="siteFullKodu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ResimKategorileri">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdı" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Genislik" Type="Int32" Nullable="false" />
+    <Property Name="Yukseklik" Type="Int32" Nullable="false" />
+    <Property Name="MaxValue" Type="Int32" />
+    <NavigationProperty Name="Resimler" Relationship="nakliyat_v1Model.FK_Resimler_ResimKategorileri" FromRole="ResimKategorileri" ToRole="Resimler" />
+  </EntityType>
+  <EntityType Name="Resimler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResimYolu" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ResimTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KategoriID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ResimKategorileri" Relationship="nakliyat_v1Model.FK_Resimler_ResimKategorileri" FromRole="Resimler" ToRole="ResimKategorileri" />
+  </EntityType>
+  <Association Name="FK_Resimler_ResimKategorileri">
+    <End Type="nakliyat_v1Model.ResimKategorileri" Role="ResimKategorileri" Multiplicity="1" />
+    <End Type="nakliyat_v1Model.Resimler" Role="Resimler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResimKategorileri">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Resimler">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sitemapUrl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Yol" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Lastmod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

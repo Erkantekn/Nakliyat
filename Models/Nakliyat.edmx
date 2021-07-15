@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="nakliyat_v1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="defaultHizmetSayfasiBilgileri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baslik" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="icerik" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="resim" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="keywords" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="siteAciklamasi" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="siteFullKodu" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="depolama">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EtkenAdı" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GunlukEtkisi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="iletisimFormu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Mesaj" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+          <Property Name="OkunduMu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pageHakkimizdaa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baslik1" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="icerik1" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="baslik2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="icerik2" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="icerik2ArkaplanResmi" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pageIletisim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="solBaslik1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="solİcerik1" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="haritaLinki" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pagesHizmetEkleme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sayfaAdıIngilizceHarfli" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="goruntulenecekAd" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="fotograf1" Type="nvarchar" MaxLength="200" />
+          <Property Name="fotograf2" Type="nvarchar" MaxLength="200" />
+          <Property Name="fotograf3" Type="nvarchar" MaxLength="200" />
+          <Property Name="icerik" Type="nvarchar(max)" />
+          <Property Name="sayfaAciklamasi" Type="nvarchar" MaxLength="500" />
+          <Property Name="keywords" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ResimKategorileri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriAdı" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genislik" Type="int" Nullable="false" />
+          <Property Name="Yukseklik" Type="int" Nullable="false" />
+          <Property Name="MaxValue" Type="int" />
+        </EntityType>
+        <EntityType Name="Resimler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResimYolu" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ResimTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sirketBilgileri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isim" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="adres" Type="nvarchar" MaxLength="200" />
+          <Property Name="telefon1" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="telefon2" Type="nvarchar" MaxLength="15" />
+          <Property Name="mail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="facebook" Type="nvarchar" MaxLength="50" />
+          <Property Name="linkedin" Type="nvarchar" MaxLength="50" />
+          <Property Name="twitter" Type="nvarchar" MaxLength="50" />
+          <Property Name="siteAciklamasi" Type="nvarchar" MaxLength="200" />
+          <Property Name="siteKeywordleri" Type="nvarchar" MaxLength="200" />
+          <Property Name="serverDakikaTamamlama" Type="int" Nullable="false" />
+          <Property Name="URL_Sitemap_icin" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sitemapUrl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yol" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Lastmod" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Resimler_ResimKategorileri">
+          <End Role="ResimKategorileri" Type="Self.ResimKategorileri" Multiplicity="1" />
+          <End Role="Resimler" Type="Self.Resimler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResimKategorileri">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Resimler">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nakliyat_v1ModelStoreContainer">
+          <EntitySet Name="defaultHizmetSayfasiBilgileri" EntityType="Self.defaultHizmetSayfasiBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="depolama" EntityType="Self.depolama" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="iletisimFormu" EntityType="Self.iletisimFormu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pageHakkimizdaa" EntityType="Self.pageHakkimizdaa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pageIletisim" EntityType="Self.pageIletisim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pagesHizmetEkleme" EntityType="Self.pagesHizmetEkleme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResimKategorileri" EntityType="Self.ResimKategorileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resimler" EntityType="Self.Resimler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sirketBilgileri" EntityType="Self.sirketBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sitemapUrl" EntityType="Self.sitemapUrl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Resimler_ResimKategorileri" Association="Self.FK_Resimler_ResimKategorileri">
+            <End Role="ResimKategorileri" EntitySet="ResimKategorileri" />
+            <End Role="Resimler" EntitySet="Resimler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nakliyat_v1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="depolama">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EtkenAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GunlukEtkisi" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="iletisimFormu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mesaj" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OkunduMu" Type="Boolean" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="pagesHizmetEkleme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fotograf1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="fotograf2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="fotograf3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sayfaAciklamasi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="keywords" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="sayfaAdıIngilizceHarfli" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="goruntulenecekAd" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sirketBilgileri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="telefon1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefon2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="linkedin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="siteAciklamasi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="siteKeywordleri" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="serverDakikaTamamlama" Type="Int32" Nullable="false" />
+          <Property Name="URL_Sitemap_icin" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="nakliyatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="depolama" EntityType="Self.depolama" />
+          <EntitySet Name="iletisimFormu" EntityType="Self.iletisimFormu" />
+          <EntitySet Name="pagesHizmetEkleme" EntityType="Self.pagesHizmetEkleme" />
+          <EntitySet Name="sirketBilgileri" EntityType="Self.sirketBilgileri" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="pageIletisim" EntityType="nakliyat_v1Model.pageIletisim" />
+          <EntitySet Name="pageHakkimizdaa" EntityType="nakliyat_v1Model.pageHakkimizdaa" />
+          <EntitySet Name="defaultHizmetSayfasiBilgileri" EntityType="nakliyat_v1Model.defaultHizmetSayfasiBilgileri" />
+          <EntitySet Name="ResimKategorileri" EntityType="nakliyat_v1Model.ResimKategorileri" />
+          <EntitySet Name="Resimler" EntityType="nakliyat_v1Model.Resimler" />
+          <AssociationSet Name="FK_Resimler_ResimKategorileri" Association="nakliyat_v1Model.FK_Resimler_ResimKategorileri">
+            <End Role="ResimKategorileri" EntitySet="ResimKategorileri" />
+            <End Role="Resimler" EntitySet="Resimler" />
+          </AssociationSet>
+          <EntitySet Name="sitemapUrl" EntityType="nakliyat_v1Model.sitemapUrl" />
+        </EntityContainer>
+        <EntityType Name="pageIletisim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="solBaslik1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="solİcerik1" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="haritaLinki" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pageHakkimizdaa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baslik1" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="icerik1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="baslik2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="icerik2" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="icerik2ArkaplanResmi" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="defaultHizmetSayfasiBilgileri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baslik" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="icerik" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="resim" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="keywords" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="siteAciklamasi" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="siteFullKodu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ResimKategorileri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriAdı" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Genislik" Type="Int32" Nullable="false" />
+          <Property Name="Yukseklik" Type="Int32" Nullable="false" />
+          <Property Name="MaxValue" Type="Int32" />
+          <NavigationProperty Name="Resimler" Relationship="nakliyat_v1Model.FK_Resimler_ResimKategorileri" FromRole="ResimKategorileri" ToRole="Resimler" />
+        </EntityType>
+        <EntityType Name="Resimler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResimYolu" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ResimTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResimKategorileri" Relationship="nakliyat_v1Model.FK_Resimler_ResimKategorileri" FromRole="Resimler" ToRole="ResimKategorileri" />
+        </EntityType>
+        <Association Name="FK_Resimler_ResimKategorileri">
+          <End Type="nakliyat_v1Model.ResimKategorileri" Role="ResimKategorileri" Multiplicity="1" />
+          <End Type="nakliyat_v1Model.Resimler" Role="Resimler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResimKategorileri">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Resimler">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sitemapUrl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yol" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Lastmod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nakliyat_v1ModelStoreContainer" CdmEntityContainer="nakliyatEntities">
+          <EntitySetMapping Name="depolama">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.depolama">
+              <MappingFragment StoreEntitySet="depolama">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EtkenAdı" ColumnName="EtkenAdı" />
+                <ScalarProperty Name="GunlukEtkisi" ColumnName="GunlukEtkisi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="iletisimFormu">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.iletisimFormu">
+              <MappingFragment StoreEntitySet="iletisimFormu">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="OkunduMu" ColumnName="OkunduMu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pagesHizmetEkleme">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.pagesHizmetEkleme">
+              <MappingFragment StoreEntitySet="pagesHizmetEkleme">
+                <ScalarProperty Name="goruntulenecekAd" ColumnName="goruntulenecekAd" />
+                <ScalarProperty Name="sayfaAdıIngilizceHarfli" ColumnName="sayfaAdıIngilizceHarfli" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fotograf1" ColumnName="fotograf1" />
+                <ScalarProperty Name="fotograf2" ColumnName="fotograf2" />
+                <ScalarProperty Name="fotograf3" ColumnName="fotograf3" />
+                <ScalarProperty Name="icerik" ColumnName="icerik" />
+                <ScalarProperty Name="sayfaAciklamasi" ColumnName="sayfaAciklamasi" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sirketBilgileri">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.sirketBilgileri">
+              <MappingFragment StoreEntitySet="sirketBilgileri">
+                <ScalarProperty Name="URL_Sitemap_icin" ColumnName="URL_Sitemap_icin" />
+                <ScalarProperty Name="serverDakikaTamamlama" ColumnName="serverDakikaTamamlama" />
+                <ScalarProperty Name="siteKeywordleri" ColumnName="siteKeywordleri" />
+                <ScalarProperty Name="siteAciklamasi" ColumnName="siteAciklamasi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isim" ColumnName="isim" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="telefon1" ColumnName="telefon1" />
+                <ScalarProperty Name="telefon2" ColumnName="telefon2" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+                <ScalarProperty Name="twitter" ColumnName="twitter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pageIletisim">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.pageIletisim">
+              <MappingFragment StoreEntitySet="pageIletisim">
+                <ScalarProperty Name="haritaLinki" ColumnName="haritaLinki" />
+                <ScalarProperty Name="solİcerik1" ColumnName="solİcerik1" />
+                <ScalarProperty Name="solBaslik1" ColumnName="solBaslik1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pageHakkimizdaa">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.pageHakkimizdaa">
+              <MappingFragment StoreEntitySet="pageHakkimizdaa">
+                <ScalarProperty Name="icerik2ArkaplanResmi" ColumnName="icerik2ArkaplanResmi" />
+                <ScalarProperty Name="icerik2" ColumnName="icerik2" />
+                <ScalarProperty Name="baslik2" ColumnName="baslik2" />
+                <ScalarProperty Name="icerik1" ColumnName="icerik1" />
+                <ScalarProperty Name="baslik1" ColumnName="baslik1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="defaultHizmetSayfasiBilgileri">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.defaultHizmetSayfasiBilgileri">
+              <MappingFragment StoreEntitySet="defaultHizmetSayfasiBilgileri">
+                <ScalarProperty Name="siteFullKodu" ColumnName="siteFullKodu" />
+                <ScalarProperty Name="siteAciklamasi" ColumnName="siteAciklamasi" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="resim" ColumnName="resim" />
+                <ScalarProperty Name="icerik" ColumnName="icerik" />
+                <ScalarProperty Name="baslik" ColumnName="baslik" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResimKategorileri">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.ResimKategorileri">
+              <MappingFragment StoreEntitySet="ResimKategorileri">
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="Yukseklik" ColumnName="Yukseklik" />
+                <ScalarProperty Name="Genislik" ColumnName="Genislik" />
+                <ScalarProperty Name="KategoriAdı" ColumnName="KategoriAdı" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resimler">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.Resimler">
+              <MappingFragment StoreEntitySet="Resimler">
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="ResimTitle" ColumnName="ResimTitle" />
+                <ScalarProperty Name="ResimYolu" ColumnName="ResimYolu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sitemapUrl">
+            <EntityTypeMapping TypeName="nakliyat_v1Model.sitemapUrl">
+              <MappingFragment StoreEntitySet="sitemapUrl">
+                <ScalarProperty Name="Lastmod" ColumnName="Lastmod" />
+                <ScalarProperty Name="Yol" ColumnName="Yol" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

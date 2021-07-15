@@ -1,0 +1,26 @@
+﻿@model Nakliyat.Models.Resimler
+<form action="/Admin/AdminHome/ResimSecildi" method="post" class="col-md-12 md-form" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom:15px;">
+            <img src="@Model.ResimYolu" />
+        </div>
+
+        <div class="col-md-6">Title: </div>
+        <div class="col-md-6"><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="title" value="@Model.ResimTitle" required=""></div>
+       
+        
+        <input type="hidden" value="false" checked="" name="yeni" />
+        <input type="hidden" value="@Model.KategoriID" name="kategoriID" />
+        <input type="hidden" value="@Model.id" name="id" />
+        <div class="file-field">
+            <div class="btn btn-pink btn-rounded btn-sm float-left">
+                <span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Resim Seç</span>
+                <input type="file" accept="image/*" name="uploadFile">
+            </div>
+          
+        </div>
+
+        <button type="submit" class="btn btn-block btn-lg btn-success" style="margin-top:10px;">Kaydet</button>
+        <a class="btn btn-danger sil btn-lg btn-block" data-target="/Admin/AdminHome/ResimSil/" data-id="@Model.id" href="#">Resmi Sil</a>
+    </div>
+</form>

@@ -1,0 +1,75 @@
+﻿@model Nakliyat.ViewModels.HakkimizdaViewModel
+@{
+    ViewBag.Title = "Hakkımızda";
+}
+<div class="w3-about-us">
+    <div>
+        <div class="w3-headings-all">
+            <h3>@Model.pageHakkimizdaV.baslik1</h3>
+        </div>
+
+        <div class="w3-about-text">
+            <p>@Model.pageHakkimizdaV.icerik1 </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="events">
+        @foreach (var item in Model.ResimlerV)
+        {
+            if (item.ResimKategorileri.KategoriAdı == "hakkımızda-galeri")
+            {
+                <div class="col-md-6 w3layouts_event_grid">
+                    <div class="w3_agile_event_grid1">
+                        <img src="@item.ResimYolu" alt="@item.ResimTitle" title="@item.ResimTitle" class="img-responsive" />
+
+
+                    </div>
+                    <div class="agileits_w3layouts_event_grid1">
+                        <h5><a href="#" data-toggle="modal" data-target="#myModal">@item.ResimTitle</a></h5>
+
+                    </div>
+                </div>
+            }
+
+        }
+
+
+
+        <div class="clearfix"></div>
+
+
+
+    </div>
+
+</div>
+
+<div class="testimonial testimonial_about agileits-w3layouts" id="testimonial" style="background: url(@Model.pageHakkimizdaV.icerik2ArkaplanResmi) no-repeat 0px 0px;background-size:cover;">
+    <div class="container">
+        <div class="w3-headings-all">
+            <h3>@Model.pageHakkimizdaV.baslik2</h3>
+        </div>
+        <div class="sap_tabs">
+            <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+
+                <div class="resp-tabs-container">
+                    <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2><div class="tab-1 resp-tab-content resp-tab-content-active" style="display:block" aria-labelledby="tab_item-0">
+                        <div class="view view-first">
+                            <p>
+                                @Model.pageHakkimizdaV.icerik2
+                            </p>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

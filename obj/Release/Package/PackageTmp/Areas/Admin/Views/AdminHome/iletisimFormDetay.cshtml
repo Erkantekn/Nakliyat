@@ -1,0 +1,33 @@
+﻿    @model Nakliyat.Models.iletisimFormu
+<style>
+    table{table-layout:fixed;}
+    table td{overflow-wrap:break-word;word-break: break-word;}
+    tr td:first-child{font-weight:bolder;}
+    </style >
+    <div >
+    <table class="table table-bordered" >
+    <tr >
+    <td > ID</td >
+    <td >@Model.id </td >
+    </tr >
+    <tr >
+    <td > Ad Soyad</td >
+    <td >@Model.AdSoyad </td >
+    </tr >
+    <tr >
+    <td > Mail Adresi</td >
+    <td >@Model.Mail </td >
+    </tr >
+    <tr >
+    <td > Mesaj</td >
+    <td > <p >@Model.Mesaj </p > </td >
+    </tr >
+    <tr >
+    <td > Gönderme Tarihi</td >
+    <td >@Model.Tarih.ToString("dd-MM-yyy HH:MM") </td >
+    </tr >
+    </table >
+    </div >
+
+    <a type="button" class="btn btn-warning" href="/Admin/AdminHome/Okunmadi?id=@Model.id&oku=0" > Okunmadı Olarak İşaretle</a >
+    <a type="button" class="btn btn-success" href="/Admin/AdminHome/Okunmadi?id=@Model.id&oku=1" > Okundu Olarak İşaretle</a >

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c879c417b20b421394fd117be27cb7ce" Name="Diagram1">
+        <EntityTypeShape EntityType="nakliyat_v1Model.depolama" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.iletisimFormu" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.pagesHizmetEkleme" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.sirketBilgileri" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.users" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.pageIletisim" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.pageHakkimizdaa" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.defaultHizmetSayfasiBilgileri" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.ResimKategorileri" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.Resimler" Width="1.5" PointX="3" PointY="11.125" />
+        <AssociationConnector Association="nakliyat_v1Model.FK_Resimler_ResimKategorileri" />
+        <EntityTypeShape EntityType="nakliyat_v1Model.sitemapUrl" Width="1.5" PointX="3.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

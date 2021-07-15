@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="nakliyat_v1ModelStoreContainer" CdmEntityContainer="nakliyatEntities">
+    <EntitySetMapping Name="depolama">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.depolama">
+        <MappingFragment StoreEntitySet="depolama">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="EtkenAdı" ColumnName="EtkenAdı" />
+          <ScalarProperty Name="GunlukEtkisi" ColumnName="GunlukEtkisi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="iletisimFormu">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.iletisimFormu">
+        <MappingFragment StoreEntitySet="iletisimFormu">
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+          <ScalarProperty Name="OkunduMu" ColumnName="OkunduMu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pagesHizmetEkleme">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.pagesHizmetEkleme">
+        <MappingFragment StoreEntitySet="pagesHizmetEkleme">
+          <ScalarProperty Name="goruntulenecekAd" ColumnName="goruntulenecekAd" />
+          <ScalarProperty Name="sayfaAdıIngilizceHarfli" ColumnName="sayfaAdıIngilizceHarfli" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fotograf1" ColumnName="fotograf1" />
+          <ScalarProperty Name="fotograf2" ColumnName="fotograf2" />
+          <ScalarProperty Name="fotograf3" ColumnName="fotograf3" />
+          <ScalarProperty Name="icerik" ColumnName="icerik" />
+          <ScalarProperty Name="sayfaAciklamasi" ColumnName="sayfaAciklamasi" />
+          <ScalarProperty Name="keywords" ColumnName="keywords" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sirketBilgileri">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.sirketBilgileri">
+        <MappingFragment StoreEntitySet="sirketBilgileri">
+          <ScalarProperty Name="URL_Sitemap_icin" ColumnName="URL_Sitemap_icin" />
+          <ScalarProperty Name="serverDakikaTamamlama" ColumnName="serverDakikaTamamlama" />
+          <ScalarProperty Name="siteKeywordleri" ColumnName="siteKeywordleri" />
+          <ScalarProperty Name="siteAciklamasi" ColumnName="siteAciklamasi" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="isim" ColumnName="isim" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="telefon1" ColumnName="telefon1" />
+          <ScalarProperty Name="telefon2" ColumnName="telefon2" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="facebook" ColumnName="facebook" />
+          <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+          <ScalarProperty Name="twitter" ColumnName="twitter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pageIletisim">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.pageIletisim">
+        <MappingFragment StoreEntitySet="pageIletisim">
+          <ScalarProperty Name="haritaLinki" ColumnName="haritaLinki" />
+          <ScalarProperty Name="solİcerik1" ColumnName="solİcerik1" />
+          <ScalarProperty Name="solBaslik1" ColumnName="solBaslik1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pageHakkimizdaa">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.pageHakkimizdaa">
+        <MappingFragment StoreEntitySet="pageHakkimizdaa">
+          <ScalarProperty Name="icerik2ArkaplanResmi" ColumnName="icerik2ArkaplanResmi" />
+          <ScalarProperty Name="icerik2" ColumnName="icerik2" />
+          <ScalarProperty Name="baslik2" ColumnName="baslik2" />
+          <ScalarProperty Name="icerik1" ColumnName="icerik1" />
+          <ScalarProperty Name="baslik1" ColumnName="baslik1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="defaultHizmetSayfasiBilgileri">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.defaultHizmetSayfasiBilgileri">
+        <MappingFragment StoreEntitySet="defaultHizmetSayfasiBilgileri">
+          <ScalarProperty Name="siteFullKodu" ColumnName="siteFullKodu" />
+          <ScalarProperty Name="siteAciklamasi" ColumnName="siteAciklamasi" />
+          <ScalarProperty Name="keywords" ColumnName="keywords" />
+          <ScalarProperty Name="resim" ColumnName="resim" />
+          <ScalarProperty Name="icerik" ColumnName="icerik" />
+          <ScalarProperty Name="baslik" ColumnName="baslik" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResimKategorileri">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.ResimKategorileri">
+        <MappingFragment StoreEntitySet="ResimKategorileri">
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="Yukseklik" ColumnName="Yukseklik" />
+          <ScalarProperty Name="Genislik" ColumnName="Genislik" />
+          <ScalarProperty Name="KategoriAdı" ColumnName="KategoriAdı" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resimler">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.Resimler">
+        <MappingFragment StoreEntitySet="Resimler">
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="ResimTitle" ColumnName="ResimTitle" />
+          <ScalarProperty Name="ResimYolu" ColumnName="ResimYolu" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sitemapUrl">
+      <EntityTypeMapping TypeName="nakliyat_v1Model.sitemapUrl">
+        <MappingFragment StoreEntitySet="sitemapUrl">
+          <ScalarProperty Name="Lastmod" ColumnName="Lastmod" />
+          <ScalarProperty Name="Yol" ColumnName="Yol" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

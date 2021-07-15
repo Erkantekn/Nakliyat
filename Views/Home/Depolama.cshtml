@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Depolama";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="w3-about-us">
+    <div>
+      
+        <div class="w3-headings-all">
+            <h3>Depolama</h3>
+        </div>
+
+        <div class="w3-about-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt lorem sed velit fermentum lobortis. Fusce eu semper lacus, eget placerat mauris. Sed lectus tellus, sodales id elit a, feugiat porttitor nulla. Sed porta magna vitae nisl vulputate lacinia. Morbi malesuada sollicitudin tortor, vitae pharetra nunc lacinia eget. Nulla ornare purus nunc, ut dapibus leo sodales adipiscing.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt lorem sed velit fermentum lobortis. Fusce eu semper lacus, eget placerat mauris. Sed lectus tellus, sodales id elit a, feugiat porttitor nulla. Sed porta magna vitae nisl vulputate lacinia. Morbi malesuada sollicitudin tortor, vitae pharetra nunc lacinia eget. Nulla ornare purus nunc, ut dapibus leo sodales adipiscing.</p>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+
+                    <form class="form-horizontal" action="/Home/DepolamaHesapla" method="post">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend>Tahmini Depolama Masrafınızı Hesaplayın.</legend>
+
+                            <!-- Multiple Radios -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="parkeli">Parkeli Depo</label>
+                                <div class="col-md-4">
+                                    <div class="radio">
+                                        <label for="parkeli-0">
+                                            <input type="radio" name="parkeli" id="parkeli-0" value="1" checked="checked">
+                                            Parkeli
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label for="parkeli-1">
+                                            <input type="radio" name="parkeli" id="parkeli-1" value="0">
+                                            Parkesiz
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Multiple Radios -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="bodrum">Kat</label>
+                                <div class="col-md-4">
+                                    <div class="radio">
+                                        <label for="bodrum-0">
+                                            <input type="radio" name="bodrum" id="bodrum-0" value="0" checked="checked">
+                                            Bodrum
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label for="bodrum-1">
+                                            <input type="radio" name="bodrum" id="bodrum-1" value="1">
+                                            Yüksek Giriş
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="metrekare">Metrekare</label>
+                                <div class="col-md-4">
+                                    <input id="metrekare" name="metrekare" type="number" placeholder="Metrekare" class="form-control input-md" required="">
+                                    <span class="help-block">Eşyalarınızın tahmini kapyalacağı alanı metrekare cinsinden giriniz.</span>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="gun">Süre</label>
+                                <div class="col-md-4">
+                                    <input id="gun" name="gun" type="number" placeholder="Süre" class="form-control input-md" required="">
+                                    <span class="help-block">Eşyalarınızın depolanacağı süreyi gün cinsinden giriniz</span>
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="submit"></label>
+                                <div class="col-md-4">
+                                    <button id="submit" name="submit" class="btn btn-primary">Hesapla</button>
+                                </div>
+                            </div>
+                            @if (ViewBag.Fiyat != null)
+                            {
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="submit"></label>
+                                    <div class="col-md-4">
+
+                                        <h3>Tahmini Olarak Depolama Hizmetimizin Ücreti: @ViewBag.Fiyat TL</h3>
+                                    </div>
+                                </div>
+                                }
+                            </fieldset>
+                    </form>
+
+                </div> <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</div>

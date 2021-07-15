@@ -1,0 +1,182 @@
+﻿@model List<Nakliyat.Models.iletisimFormu>
+@{
+    ViewBag.Title = "Mesajlar";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section style{
+    #dataTable td p{
+
+    display: inline-block;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    }
+}
+<div class="modal" tabindex="-1" role="dialog" id="modelView">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detay</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ref">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modelSil">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Silmek İstediğinize Emin Misiniz?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a class="btn btn-danger" href="#">Sil</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="ref">Kapat</button>
+            </div>
+            <div class="modal-footer">
+
+               
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <h1 class="mt-4">Mesajlar</h1>
+    <ol class="breadcrumb mb-4">
+    </ol>
+    <div class="row">
+        <div class="col-xl-4 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Toplam Mesaj</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">@ViewBag.Toplam</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Okunmayan Mesaj</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">@ViewBag.Okunmayan</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">Okunan Mesaj</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">@ViewBag.Okunan</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            İletişim Formları
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Ad Soyad</th>
+                            <th>Mail</th>
+                            <th>Mesaj</th>
+                            <th>Gönderilme Zamanı</th>
+                            <th>Okundu mu?</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.AdSoyad</td>
+                                <td>@item.Mail</td>
+                                <td><p>@item.Mesaj</p></td>
+                                <td>@item.Tarih.ToString("yyyy-MM-dd HH:MM")</td>
+                                <td>
+                                    @if (@item.OkunduMu)
+                                    {
+                                        <a class="btn btn-success view" data-target="/Admin/AdminHome/iletisimFormDetay/@item.id" href="#">Tekrar Oku</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-warning view" data-target="/Admin/AdminHome/iletisimFormDetay/@item.id" href="#">Oku</a>
+                                    }
+                                </td>
+                                <td><a class="btn btn-danger sil" data-target="/Admin/AdminHome/iletisimFormSil/" data-id="@item.id" href="#">Sil</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section head{
+    <script type="text/javascript">
+    $(function () {
+    // a tagimizde bulunan .view classımıza click olduğunda
+    $("body").on("click", ".view", function () {
+    //data-target dan url mizi al
+    var url = $(this).data("target");
+    //bu urlimizi post et
+    $.post(url, function (data) { })
+    //eğer işlemimiz başarılı bir şekilde gerçekleşirse
+    .done(function (data) {
+    //gelen datayı .modal-body mizin içerise html olarak ekle
+    $("#modelView .modal-body").html(data);
+    //sonra da modalimizi göster
+    $("#modelView").modal("show");
+    })
+    //eğer işlem başarısız olursa
+    .fail(function () {
+    //modalımızın bodysine Error! yaz
+    $("#modelView .modal-body").text("Error!!");
+    //sonra da modalimizi göster
+    $("#modelView").modal("show");
+    })
+
+    });
+    })
+
+    $(function () {
+        // a tagimizde bulunan .sil classımıza click olduğunda
+        $("body").on("click", ".sil", function () {
+            //data-target dan url mizi al
+            var url = $(this).data("target");
+            var id = $(this).data("id");
+            //gelen datayı .modal-body mizin içerise html olarak ekle
+            $("#modelSil .modal-body .btn.btn-danger").attr("href", url+id);
+                //sonra da modalimizi göster
+            $("#modelSil").modal("show");
+         
+    
+
+        });
+    })
+    </script>
+}

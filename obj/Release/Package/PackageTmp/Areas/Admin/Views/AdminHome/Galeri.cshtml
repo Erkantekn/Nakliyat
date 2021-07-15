@@ -1,0 +1,282 @@
+﻿@model Nakliyat.Areas.Admin.ViewModel.GaleriViewModel
+@{
+    ViewBag.Title = "Galeri";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="modal" tabindex="-1" role="dialog" id="modelSil">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Silmek İstediğinize Emin Misiniz?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a class="btn btn-danger" href="#">Sil</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="ref">Kapat</button>
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalHataliGiris" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="margin: -1rem -1rem -1rem 0;">&times;</button>
+
+                <div class="signin-form profile">
+                    @if (Request.QueryString["hata"] != null)
+                    {
+                        if (Request.QueryString["hata"] == "0")
+                        {
+                            <h3 class="agileinfo_sign">Resim Kaydı Başarıyla Yapılmıştır.</h3>
+                        }
+                        else if (Request.QueryString["hata"] == "1")
+                        {
+                            <h3 class="agileinfo_sign">Bu kategoriye resim yükleme sınırına ulaşılmıştır.</h3>
+                        }
+                        else if (Request.QueryString["hata"] == "2")
+                        {
+                            <h3 class="agileinfo_sign">Resim dosyası sunucuya yüklenememiştir.</h3>
+                        }
+                        else if (Request.QueryString["hata"] == "3")
+                        {
+                            <h3 class="agileinfo_sign">Yüklenen Dosya Resim Değildir.</h3>
+                        }
+                        else if (Request.QueryString["hata"] == "10")
+                        {
+                        <h3 class="agileinfo_sign">Resim dosyası ve kaydı başarıyla silindi.</h3>
+                        }
+                        else if (Request.QueryString["hata"] == "11")
+                        {
+                            <h3 class="agileinfo_sign">Kayıt silindi fakat sunucudaki resim dosyası silinemedi.</h3>
+                        }
+                        else if (Request.QueryString["hata"] == "12")
+                        {
+                            <h3 class="agileinfo_sign">Kayıt bulunamadı.</h3>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modelResim">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resim Güncelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ref">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modelResimYeni">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resim Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Admin/AdminHome/ResimSecildi" method="post" class="col-md-12 md-form" enctype="multipart/form-data">
+                    <div class="row">
+
+                        <div class="col-md-6">Title: </div>
+                        <div class="col-md-6"><input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="title" value="Default Başlık" required=""></div>
+
+                        <input type="hidden" value="true" name="yeni" />
+                        <input type="hidden" value="@Request.QueryString["kategoriId"]" name="kategoriID" />
+                        <div class="file-field">
+                            <div class="btn btn-pink btn-rounded btn-sm float-left">
+                                <span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Resim Seç</span>
+                                <input type="file" accept="image/*" name="uploadfile" id="uploadfile" required="">
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-lg btn-success" style="margin-top:10px;">Kaydet</button>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ref">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <h1 class="mt-4">Galeri</h1>
+    <ol class="breadcrumb mb-4">
+    </ol>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.DropDownList("Liste", (IEnumerable<SelectListItem>)ViewBag.Liste, "Kategoriyi Seçiniz.", new { @class = "form-control", @onchange = "KategoriRefresh()", @id = "kategori" })
+
+            </div>
+        </div>
+    </div>
+    <ol class="breadcrumb mb-4">
+    </ol>
+    <div class="row">
+        @if (Request.QueryString["kategoriId"] != null)
+        {
+            int id = Convert.ToInt32(Request.QueryString["kategoriId"]);
+        <div class="col-md-6">
+            <h4 class="col-md-12"><i style="font-weight:bold;">Maximum Resim Sayısı: </i>@Model.ResimKategorileriV.Where(x => x.id == id).FirstOrDefault().MaxValue</h4>
+            <h4 class="col-md-12"><i style="font-weight:bold;">Şuanki Resim Sayısı: </i>@Model.ResimlerV.Count</h4>
+            <h4 class="col-md-12"><i style="font-weight:bold;">Resim Genişliği: </i>@Model.ResimKategorileriV.Where(x => x.id == id).FirstOrDefault().Genislik px | <i style="font-weight: bold;">Resim Yüksekliği: </i>@Model.ResimKategorileriV.Where(x => x.id == id).FirstOrDefault().Yukseklik px</h4>
+            <h4 class="col-md-12"><i style="font-weight:bold;">Maximum 10MB yükleyebilirsiniz</i></h4>
+        </div>
+            <div class="col-md-6">
+                @if (@Model.ResimKategorileriV.Where(x => x.id == id).FirstOrDefault().MaxValue > @Model.ResimlerV.Count)
+                {
+                    <a href="#" class="btn btn-block btn-lg btn-success Yeni"><span class="glyphicon glyphicon-camera"></span> Yeni Resim Ekle</a>
+                }
+            </div>
+
+        }
+        @if (Model.ResimlerV.Count != 0)
+        {
+            <ol class="breadcrumb col-md-12">
+            </ol>
+            <h3 class="col-md-12">Değiştirmek İstediğiniz Resmi Seçiniz</h3>
+            <ol class="breadcrumb col-md-12">
+            </ol>
+            foreach (var item in Model.ResimlerV)
+            {
+                if(item.ResimYolu!=null){ 
+                <div class="col-md-6"><a href="#" class="Guncelle" data-target="/Admin/AdminHome/ResimGuncellePartial?id=@item.id"><img src="@item.ResimYolu" title="@item.ResimTitle" /></a></div>
+                    }
+            }
+
+        }
+    </div>
+</div>
+
+
+
+@section head{
+    <style>
+        img {
+            width: 100%;
+            height:100%;
+        }
+        .col-md-6 img:hover{filter:blur(4px);}
+    </style>
+
+    <script type="text/javascript">
+        function KategoriRefresh() {
+            var stateId = $('#kategori').val();
+            window.location.href = "/Admin/AdminHome/Galeri?kategoriId=" + stateId;
+        }
+
+
+        $(function () {
+            // a tagimizde bulunan .view classımıza click olduğunda
+            $("body").on("click", ".Guncelle", function () {
+                //data-target dan url mizi al
+                var url = $(this).data("target");
+                //bu urlimizi post et
+                $.post(url, function (data) { })
+                    //eğer işlemimiz başarılı bir şekilde gerçekleşirse
+                    .done(function (data) {
+                        //gelen datayı .modal-body mizin içerise html olarak ekle
+                        $("#modelResim .modal-body").html(data);
+                        //sonra da modalimizi göster
+                        $("#modelResim").modal("show");
+                    })
+                    //eğer işlem başarısız olursa
+                    .fail(function () {
+                        //modalımızın bodysine Error! yaz
+                        $("#modelResim .modal-body").text("Error!!");
+                        //sonra da modalimizi göster
+                        $("#modelResim").modal("show");
+                    })
+
+            });
+        })
+
+
+        $(function () {
+            // a tagimizde bulunan .view classımıza click olduğunda
+            $("body").on("click", ".Yeni", function () {
+
+                $("#modelResimYeni").modal("show");
+
+
+
+            });
+        })
+
+
+
+
+
+
+
+        $(function () {
+        // a tagimizde bulunan .sil classımıza click olduğunda
+        $("body").on("click", ".sil", function () {
+            //data-target dan url mizi al
+            var url = $(this).data("target");
+            var id = $(this).data("id");
+            //gelen datayı .modal-body mizin içerise html olarak ekle
+            $("#modelSil .modal-body .btn.btn-danger").attr("href", url+id);
+                //sonra da modalimizi göster
+          
+            $("#modelSil").modal("show");
+              $("#modelResim").modal("hide");
+    
+
+        });
+    })
+
+
+
+
+
+
+    </script>
+
+    @if (Request.QueryString["hata"] != null)
+    {
+
+        <script type="text/javascript">
+            $(window).on('load', function () {
+                $('#modalHataliGiris').modal('show');
+            });
+        </script>
+
+
+
+    }
+
+
+
+
+}
+
